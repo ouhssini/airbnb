@@ -3,11 +3,11 @@
 require_once 'vendor/autoload.php';
 
 // Function to generate fake data and return it as an array
-function generateData($faker, $selectedGender, $selectedCountry) {
+function generateData($faker, $selectedGender, $selectedCountry)
+{
     $ein = $faker->ein();
     $name = $faker->name;
     $email = $faker->email;
-    $sentence = $faker->sentence;
     $address = $faker->address;
     $phone = $faker->e164PhoneNumber;
     $cardtype = $faker->creditCardType;
@@ -18,7 +18,6 @@ function generateData($faker, $selectedGender, $selectedCountry) {
         'ein' => $ein,
         'name' => $name,
         'email' => $email,
-        'sentence' => $sentence,
         'address' => $address,
         'phone' => $phone,
         'gender' => $selectedGender,
@@ -36,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $selectedCountry = isset($_POST['country']) ? $_POST['country'] : '';
 
     // Create an instance of the Faker class based on the selected country
-    $faker = \Faker\Factory::create($selectedCountry);
+    $faker = \Faker\Factory::create($selectedCountry, $selectedGender);
 
     // Generate fake data for each set
     $dataSets = [];
@@ -49,6 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -64,12 +64,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     </style>
 </head>
+
 <body class="bg-light">
     <div class="container mt-5">
         <h1 class="mb-4">Fake Data Generator</h1>
 
         <form action="" method="post" class="mb-4">
-            <div class="form-row">
+            <div class="form-row align-items-end">
                 <div class="form-group col-md-4">
                     <label for="gender">Select Gender:</label>
                     <select name="gender" id="gender" class="form-control">
@@ -121,4 +122,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
+
 </html>
