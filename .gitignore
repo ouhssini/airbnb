@@ -1,4 +1,14 @@
-# ignore  folder 
-vendor/
+# Ignore vendor folder
+/vendor/
 
-# ignore files 
+# Ignore assets folder
+/assets/
+
+# Ignore font folder
+/font/
+
+# Ignore specific files
+index.html
+process.php
+address.php
+fpdf.php
